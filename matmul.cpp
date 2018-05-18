@@ -31,7 +31,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   } 
   */
-  /*for (unsigned int i = 0; i < hA; i += 2)  {
+  for (unsigned int i = 0; i < hA; i += 2)  {
     for (unsigned int j = 0; j < hA; j += 2) {
       double sum1 = 0;
       double sum2 = 0;
@@ -64,7 +64,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
       C[(i+1) * wB + (j+1)] = (float)sum4;
     }
   }
-  */
+  
   /*
   for (unsigned int i = 0; i < hA; ++i)  {
     for (unsigned int j = 0; j < hA; ++j) {
@@ -78,6 +78,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   }
   */
+   /*
   for (unsigned int i = 0; i < hA; i += 4)  {
     for (unsigned int j = 0; j < hA; j += 4) {
       double sum1 = 0;
@@ -112,7 +113,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
         double b = B[temp5];
 
         double c = A[temp1];
-        double d = B[temp6;
+        double d = B[temp6];
 
         double e = A[temp1];
         double f = B[temp7];
@@ -124,7 +125,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
         double j = B[temp5];
 
         double kk = A[temp2];
-        double l = B[(temp6];
+        double l = B[temp6];
 
         double m = A[temp2];
         double n = B[temp7];
@@ -198,7 +199,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
 
     }
   }
-
+  */
 }
 
 // Allocate a matrix of dimensions height*width
