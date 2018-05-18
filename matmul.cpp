@@ -98,54 +98,63 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
       double sum16 = 0;
 
       for (unsigned int k = 0; k < wA; ++k) {
-      	
-        double a = A[i * wA + k];
-        double b = B[j * wB + k];
+      	int temp1 = i * wA + k;
+      	int temp2 = (i+1) * wA + k;
+      	int temp3 = (i+2) * wA + k;
+      	int temp4 = (i+3) * wA + k;
 
-        double c = A[i * wA + k];
-        double d = B[(j+1) * wB + k];
+      	int temp5 = j * wB + k;
+      	int temp6 = (j+1) * wB + k;
+      	int temp7 = (j+2) * wB + k;
+      	int temp8 = (j+3) * wB + k;
 
-        double e = A[i * wA + k];
-        double f = B[(j+2) * wB + k];
+        double a = A[temp1];
+        double b = B[temp5];
 
-        double g = A[i * wA + k];
-        double h = B[(j+3) * wB + k];
+        double c = A[temp1];
+        double d = B[temp6;
+
+        double e = A[temp1];
+        double f = B[temp7];
+
+        double g = A[temp1];
+        double h = B[temp8];
         //////////////////////////////////
-        double i = A[i+1 * wA + k];
-        double j = B[j * wB + k];
+        double i = A[temp2];
+        double j = B[temp5];
 
-        double kk = A[(i+1) * wA + k];
-        double l = B[(j+1) * wB + k];
+        double kk = A[temp2];
+        double l = B[(temp6];
 
-        double m = A[(i+1) * wA + k];
-        double n = B[(j+2) * wB + k];
+        double m = A[temp2];
+        double n = B[temp7];
 
-        double o = A[(i+1) * wA + k];
-        double p = B[(j+3) * wB + k];
+        double o = A[temp2];
+        double p = B[temp8];
 		//////////////////////////////////
-        double q = A[(i+2) * wA + k];
-        double r = B[j * wB + k];
+        double q = A[temp3];
+        double r = B[temp5];
 
-        double s = A[(i+2) * wA + k];
-        double t = B[(j+1) * wB + k];
+        double s = A[temp3];
+        double t = B[temp6];
 
-        double u = A[(i+2) * wA + k];
-        double v = B[(j+2) * wB + k];
+        double u = A[temp3];
+        double v = B[temp7];
 
-        double w = A[(i+2) * wA + k];
-        double x = B[(j+3) * wB + k];
+        double w = A[temp3];
+        double x = B[temp8];
 		//////////////////////////////////
-        double y = A[(i+3) * wA + k];
-        double z = B[j * wB + k];
+        double y = A[temp4];
+        double z = B[temp5];
 
-        double aa = A[(i+3) * wA + k];
-        double ab = B[(j+1) * wB + k];
+        double aa = A[temp4];
+        double ab = B[temp6];
 
-        double ac = A[(i+3) * wA + k];
-        double ad = B[(j+2) * wB + k];
+        double ac = A[temp4];
+        double ad = B[temp7];
 
-        double ae = A[(i+3) * wA + k];
-        double af = B[(j+3) * wB + k];
+        double ae = A[temp4];
+        double af = B[temp8];
 
         sum1 += a * b;
         sum2 += c * d;
@@ -186,8 +195,10 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
       C[(i+3) * wB + (j+1)] = (float)sum14;
       C[(i+3) * wB + (j+2)] = (float)sum15;
       C[(i+3) * wB + (j+3)] = (float)sum16;
+
     }
   }
+
 }
 
 // Allocate a matrix of dimensions height*width
