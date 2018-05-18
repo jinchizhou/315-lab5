@@ -33,6 +33,11 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   } 
 */
+  for (unsigned int r = 0; r < hA; r+=2) {
+    for(unsigned int c = 0; c < wB; c+=2) {
+      
+    }
+  }
   for (unsigned int r = 0; r < hA; r++) {
     for (unsigned int c = 0; c < wB; c++) {
       //double sum1 = 0;
