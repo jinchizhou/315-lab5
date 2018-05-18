@@ -111,10 +111,10 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
         double g = A[i * wA + k];
         double h = B[(j+3) * wB + k];
         //////////////////////////////////
-        double i = A[(i+1) * wA + k];
+        double i = A[i+1 * wA + k];
         double j = B[j * wB + k];
 
-        double k = A[(i+1) * wA + k];
+        double kk = A[(i+1) * wA + k];
         double l = B[(j+1) * wB + k];
 
         double m = A[(i+1) * wA + k];
@@ -153,7 +153,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
         sum4 += g * h;
 
         sum5 += i * j;
-        sum6 += k * l;
+        sum6 += kk * l;
         sum7 += m * n;
         sum8 += o * p;
 
