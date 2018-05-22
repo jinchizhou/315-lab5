@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -Wall -O3
+CXXFLAGS = -g -Wall -O2
 CXXSRCS = matmul.cpp matmul-driver.cpp 
 BIN = mm
 
