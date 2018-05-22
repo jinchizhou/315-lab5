@@ -31,39 +31,39 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   } 
   */
-  for (unsigned int i = 0; i < hA; i += 2)  {
-    for (unsigned int j = 0; j < hA; j += 2) {
-      double sum1 = 0;
-      double sum2 = 0;
-      double sum3 = 0;
-      double sum4 = 0;
-      for (unsigned int k = 0; k < wA; ++k) {
-      	int temp1 = i * wA + k;
-      	int temp2 = (i+1) * wA + k;
-      	int temp3 = j * wB + k;
-      	int temp4 = (j+1) * wB + k;
-        double a = A[temp1];
-        double b = B[temp3];
+//   for (unsigned int i = 0; i < hA; i += 2)  {
+//     for (unsigned int j = 0; j < hA; j += 2) {
+//       double sum1 = 0;
+//       double sum2 = 0;
+//       double sum3 = 0;
+//       double sum4 = 0;
+//       for (unsigned int k = 0; k < wA; ++k) {
+//       	int temp1 = i * wA + k;
+//       	int temp2 = (i+1) * wA + k;
+//       	int temp3 = j * wB + k;
+//       	int temp4 = (j+1) * wB + k;
+//         double a = A[temp1];
+//         double b = B[temp3];
 
-        double c = A[temp1];
-        double d = B[temp4];
+//         double c = A[temp1];
+//         double d = B[temp4];
 
-        double e = A[temp2];
-        double f = B[temp3];
+//         double e = A[temp2];
+//         double f = B[temp3];
 
-        double g = A[temp2];
-        double h = B[temp4];
-        sum1 += a * b;
-        sum2 += c * d;
-        sum3 += e * f;
-        sum4 += g * h;
-      }
-      C[i * wB + j] = (float)sum1;
-      C[i * wB + (j+1)] = (float)sum2;
-      C[(i+1) * wB + j] = (float)sum3;
-      C[(i+1) * wB + (j+1)] = (float)sum4;
-    }
-  }
+//         double g = A[temp2];
+//         double h = B[temp4];
+//         sum1 += a * b;
+//         sum2 += c * d;
+//         sum3 += e * f;
+//         sum4 += g * h;
+//       }
+//       C[i * wB + j] = (float)sum1;
+//       C[i * wB + (j+1)] = (float)sum2;
+//       C[(i+1) * wB + j] = (float)sum3;
+//       C[(i+1) * wB + (j+1)] = (float)sum4;
+//     }
+//   }
   
   /*
   for (unsigned int i = 0; i < hA; ++i)  {
@@ -200,6 +200,23 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   }
   */
+for (unsigned int i = 0; i < hA; i += 16 )  {
+    for (unsigned int j = 0; j < hA; j += 16 ) {
+
+        for(int x = 0; x < 16; x++){
+            for(int y = 0; y < 16; y++){
+                double sum = 0;
+		        for (unsigned int k = 0; k < wA; ++k) {
+		      	    double a = A[(i+x) * wA + k];
+		            double b = A[(j+y) * wA + k];
+		            sum += a*b
+		        }
+		        C[(i+x) * wB + (j+y)] = (float)sum;
+		    }
+		}
+    }
+}
+	
 }
 
 // Allocate a matrix of dimensions height*width
