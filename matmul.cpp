@@ -19,7 +19,7 @@ void matmul( float*, const float*, const float*, unsigned int, unsigned int, uns
 void matmul(float* C, const float* A, const float* B, unsigned int hA, 
     unsigned int wA, unsigned int wB)
 {
-  for (unsigned int i = 0; i < hA; ++i)  {
+  for (unsigned int i = 0; i < hA; ++i)  {//original code multiplication
     for (unsigned int j = 0; j < wB; ++j) {
       double sum = 0;
       for (unsigned int k = 0; k < wA; ++k) {
@@ -32,6 +32,7 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
   } 
   
   /*
+  //column major multiplication
   for (unsigned int i = 0; i < hA; ++i)  {
     for (unsigned int j = 0; j < hA; ++j) {
       double sum = 0;
@@ -44,7 +45,8 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
     }
   }
   */
-   /*for (unsigned int i = 0; i < hA; i += 16 )  {
+  //16x16 tiling multiplication
+   /*for (unsigned int i = 0; i < hA; i += 16 )  {//
       for (unsigned int j = 0; j < hA; j += 16 ) {
 
          for(int x = 0; x < 16; ++x){
@@ -63,11 +65,12 @@ void matmul(float* C, const float* A, const float* B, unsigned int hA,
    }
    */
    /*
+   //32x32 tiling multiplication
    for (unsigned int i = 0; i < hA; i += 32 )  {
       for (unsigned int j = 0; j < hA; j += 32 ) {
 
          for(int x = 0; x < 32; ++x){
-            
+           
             for(int y = 0; y < 32; ++y){
                double sum = 0;
 	       for (unsigned int k = 0; k < wA; ++k) {
@@ -98,11 +101,13 @@ Matrix Allocate2ndMatrix(int height, int width)
    * You need to modify this function which is only called
    * for Matrix B such that a column-major ordering is
    * performed. */
+  //column major matrix allocation
   /*for(unsigned int i = 0; i < M.height; i++){
     for(unsigned int j = 0; j < M.width; j++){
       M.elements[i+j * M.width] = (rand() / (float)RAND_MAX);
     }
   }*/
+  //original matrix allocation
   for(unsigned int i = 0; i < M.height * M.width; i++)
   {
     M.elements[i] = (rand() / (float)RAND_MAX);
